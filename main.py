@@ -11,20 +11,20 @@ nbM = 0
 nbT = 0
 
 def algo():
-    global nbM
-    global nbT
-    print(row)
-    print(col)
-    print(min)
-    print(max)
+    nbM = 0
+    nbT = 0
+
     print(pizza)
 
     for line in pizza:
         nbM += line.count(M)
         nbT += line.count(T)
 
-    print("Nb champ = ", nbM)
-    print("Nb tomato = ", nbT)
+    search = M if nbT > nbM else T
+    for i in range (len(pizza)):
+        if (search in pizza[i]):
+            print ("Index cc= ", list[i].index(search))
+
 
 if __name__ == '__main__':
     file = open("example.in")
