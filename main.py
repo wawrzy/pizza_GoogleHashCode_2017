@@ -13,6 +13,52 @@ pizza = None
 nbM = 0
 nbT = 0
 
+def search_pizza(i, j, min, max, pizza):
+    size_pizza_T = 0
+    size_pizza_M = 0
+
+
+    coord_i = i
+    coord_j = j
+
+    while size_pizza_M < max and size_pizza_T < max:
+        check = False
+        if coord_i + 1 < len(pizza[j]):
+            add_T = 0
+            add_M = 0
+            for x in range(j, coord_j + 1):
+                if pizza[x][coord_i + 1] == T:
+                    add_T += 1
+                elif pizza[x][coord_i + 1] == M:
+                    add_M += 1
+
+            if add_T + size_pizza_T <= max or add_M + size_pizza_M <= max:
+                coord_i += 1
+                size_pizza_T += add_T
+                size_pizza_M += add_M
+                check = True
+
+        if coord_j + 1 < len(pizza):
+            add_T = 0
+            add_M = 0
+            for x in range(i, coord_i + 1):
+                if pizza[coord_j + 1][x] == T:
+                    add_T += 1
+                elif pizza[coord_j + 1][x] == M:
+                    add_M += 1
+
+            if add_T + size_pizza_T <= max or add_M + size_pizza_M <= max:
+                check = True
+                coord_j += 1
+                size_pizza_T += add_T
+                size_pizza_M += add_M
+        if not check:
+            break
+
+    if coord_j == j and coord_i == i:
+        return None
+    return (coord_i, coord_j)
+
 def algo():
     global nbM
     global nbT
